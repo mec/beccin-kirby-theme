@@ -1,0 +1,11 @@
+Title: Home
+
+----
+
+Text: 
+
+Portfolio & blog
+theme for
+Kirby
+
+<span class="date">(date: d / m / Y)</span>

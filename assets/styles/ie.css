@@ -1,0 +1,44 @@
+	.grid {
+		width: 960px;
+	}
+    .grid-unit-a {
+	    width: 320px;
+    }
+    .grid-unit-b {
+	    width: 640px;
+    }
+    header.site {
+		background: #ffffff;
+		height: 120px;
+		width: 100%;
+		margin-bottom: 40px;
+	}
+    .block-1, .block-project {
+	    width: 160px;
+	    height: 160px;
+	    float: left;
+    }
+    .block-2 {
+	    width: 320px;
+	    height: 320px;
+	    margin-right: 160px;
+  	    float: left;
+    }
+    .logo {
+    	text-align: left;
+		float: left;
+		margin-top: 15px;
+	}
+	nav.primary-nav ul {
+	list-style-type: none;
+	text-align: right;
+	}
+	nav.primary-nav li {
+		margin-left: 40px;
+	}
+	article.post {
+		margin-right: 160px;
+	}
+	.project-body p {
+		margin-right: 160px;
+	}
