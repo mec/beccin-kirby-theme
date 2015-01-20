@@ -47,7 +47,7 @@
   
  </div>
   <div class="tags">
-	  <?php $tagcloud = tagcloud($pages->find('blog'), array('limit' => 20)) ?>
+	  	<?php $tagcloud = tagcloud(page('blog'), array('limit' => 20)) ?>
 	  	<h3>Tags</h3>
 		<ul class="tags">
 			<?php foreach($tagcloud as $tag): ?>

@@ -1,13 +1,15 @@
 <?php 
 // see if this post has a video field
 // if we find the video field, diplay the video
-if ($project->vimeo()) :?>
-	<?php $url = $project->vimeo(); ?>
+if ( $page->vimeourl() != '') :?>
+	<?php echo "vimeo"; ?>
+	<?php $url = $page->vimeourl(); ?>
 	<div class="video">
 	<?php echo vimeo($url); ?>
 	</div>
-<?php elseif ($project->youtube()) :?>
-	<?php $url = $project->youtube(); ?>
+<?php elseif ($page->youtubeurl() != '') :?>
+	<?php echo "yt"; ?>
+	<?php $url = $page->youtube(); ?>
 	<div class="video">
 	<?php echo youtube($url); ?>
 	</div>
@@ -15,7 +17,7 @@ if ($project->vimeo()) :?>
 <?php
 
 // find the portfolio page and get the children, shuffle them and limit to only 12 results.
-$images = $project->images(); 
+$images = $page->images(); 
 
 ?>
 	<ul class="rslides">

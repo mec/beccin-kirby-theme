@@ -1,9 +1,13 @@
 <?php
 
-function tagcloud($parent, $options=array()) {
+/**
+ * Tagcloud plugin
+ *
+ * @author Bastian Allgeier <bastian@getkirby.com>
+ * @version 2.0.0
+ */
+function tagcloud($parent, $options = array()) {
 
-  global $site;
-  
   // default values
   $defaults = array(
     'limit'    => false,
@@ -16,8 +20,8 @@ function tagcloud($parent, $options=array()) {
   );
 
   // merge defaults and options
-  $options = array_merge($defaults, $options);  
-    
+  $options = array_merge($defaults, $options);
+
   switch($options['children']) {
     case 'invisible':
       $children = $parent->children()->invisible();
@@ -30,36 +34,29 @@ function tagcloud($parent, $options=array()) {
       break;
   }
 
+  $tags  = $children->pluck($options['field'], ',');
+  $tags  = array_count_values($tags);
   $cloud = array();
-  $ds    = DIRECTORY_SEPARATOR == '/' ? ':' : ';';
-  
-  foreach($children as $p) {
-  
-    $tags = str::split($p->$options['field']());  
-    
-    foreach($tags as $t) {
-            
-      if(isset($cloud[$t])) {
-        $cloud[$t]->results++;
-      } else {
-        $cloud[$t] = new obj(array(
-          'results'  => 1,
-          'name'     => $t,
-          'url'      => $options['baseurl'] . '/' . $options['param'] . $ds . $t, 
-          'isActive' => (param($options['param']) == $t) ? true : false,
-        ));
-      }
-      
-    }
-    
+  $ds    = DS == '/' ? ':' : ';';
+
+  foreach($tags as $tag => $count) {
+
+    $cloud[$tag] = new Obj(array(
+      'results'  => $count,
+      'name'     => $tag,
+      'url'      => $options['baseurl'] . '/' . $options['param'] . $ds . urlencode($tag),
+      'isActive' => urldecode(param($options['param'])) == $tag
+    ));
+
   }
-  
-  $cloud = a::sort($cloud, $options['sort'], $options['sortdir']);
-  
+
+  $cloud = new Collection($cloud);
+  $cloud = $cloud->sortBy($options['sort'], $options['sortdir']);
+
   if($options['limit']) {
-    $cloud = array_slice($cloud, 0, $options['limit']);
+    $cloud = $cloud->limit($options['limit']);
   }
-  
-  return $cloud;  
+
+  return $cloud;
 
 }
