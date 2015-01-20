@@ -1,7 +1,7 @@
 <?php 
 
 // find the portfolio page and get the children, shuffle them and limit to only 12 results.
-$open  = $pages->findByUID('portfolio');
+$open  = $pages->find('portfolio');
 $items = ($open) ? $open->children()->visible()->shuffle()->limit(12) : false; 
 ?>
 <?php if($items && $items->count()): ?>
