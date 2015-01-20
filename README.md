@@ -1,6 +1,8 @@
 #Beccin Kirby Theme
 Reponsive portfolio and blog theme for Kirby. Designed by Becci Neal and built by Meyric Rawlings.
 
+Now only suupports Kirby 2!
+
 Uses goodness:
 
 - [Google Fonts](http://www.google.com/fonts/) - PT Sans
